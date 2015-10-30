@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# script to copy images to remote site
+
+function usage()
+{
+    cat << EOF 
+	Usage:  autovp <server-name>
+    EOF
+}
+
+if [ $# -eq 0 -o $# -lt 1 ]
+then
+        echo "Error: Mandatory args missing..."
+        usage
+        exit 1
+fi
+
+server_f=$1
+autossh -M 20000 -f -N $server -R 1234:localhost:22 -C
+
